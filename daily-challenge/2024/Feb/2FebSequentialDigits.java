@@ -1,4 +1,4 @@
-// Maths solution
+// Maths solution -- Came up with this solution
 class Solution {
     public List<Integer> sequentialDigits(int loww, int highh) {
         List<Integer> nums = new ArrayList<>();
@@ -34,4 +34,22 @@ class Solution {
 }
 
 
-//
+// Sliding window approach -- Got this solution from editorial
+class Solution {
+    public List<Integer> sequentialDigits(int low, int high) {
+        String seed = "123456789";
+        int lowLength = String.valueOf(low).length();
+        int highLength = String.valueOf(high).length();
+        List<Integer> solution = new ArrayList<>();
+            
+        for(int window = lowLength; window <= highLength; window++) {
+            for(int left = 0; left < 10 - window; left++) {
+                int candidate = Integer.parseInt(seed.substring(left, left+window));
+                if(candidate >= low && candidate <= high) {
+                    solution.add(candidate);
+                }
+            }
+        }
+        return solution;
+    }
+}
